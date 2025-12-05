@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block title %}Actualizar Proveedor{% endblock %}
+
+{% block content %}
+<h2>Actualizar Proveedor de Almacén</h2>
+<form method="post">
+    {% csrf_token %}
+    <input type="text" name="nombre_proveedor" placeholder="Nombre del Proveedor" class="form-control mb-2" value="{{ proveedor.nombre_proveedor }}" required>
+    <input type="text" name="contacto_persona" placeholder="Persona de Contacto" class="form-control mb-2" value="{{ proveedor.contacto_persona }}">
+    <input type="text" name="telefono" placeholder="Teléfono" class="form-control mb-2" value="{{ proveedor.telefono }}">
+    <input type="email" name="email" placeholder="Email" class="form-control mb-2" value="{{ proveedor.email }}">
+    <input type="text" name="direccion_proveedor" placeholder="Dirección" class="form-control mb-2" value="{{ proveedor.direccion_proveedor }}">
+    <input type="text" name="ruc" placeholder="RUC" class="form-control mb-2" value="{{ proveedor.ruc }}">
+    <input type="text" name="pais_origen" placeholder="País de Origen" class="form-control mb-2" value="{{ proveedor.pais_origen }}">
+    <button type="submit" class="btn btn-success">Guardar Cambios</button>
+    <a href="{% url 'ver_proveedores' %}" class="btn btn-secondary">Cancelar</a>
+</form>
+{% endblock %}

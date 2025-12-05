@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+
+{% block title %}Actualizar Producto{% endblock %}
+
+{% block content %}
+<h2>Actualizar Producto de Almacén</h2>
+<form method="post">
+    {% csrf_token %}
+    <div class="mb-3">
+        <label for="nombre_producto" class="form-label">Nombre del Producto</label>
+        <input type="text" name="nombre_producto" id="nombre_producto" class="form-control" value="{{ producto.nombre_producto }}" required>
+    </div>
+    <div class="mb-3">
+        <label for="descripcion" class="form-label">Descripción</label>
+        <textarea name="descripcion" id="descripcion" class="form-control">{{ producto.descripcion }}</textarea>
+    </div>
+    <div class="mb-3">
+        <label for="codigo_sku" class="form-label">Código SKU</label>
+        <input type="text" name="codigo_sku" id="codigo_sku" class="form-control" value="{{ producto.codigo_sku }}" required>
+    </div>
+    <div class="mb-3">
+        <label for="stock_actual" class="form-label">Stock Actual</label>
+        <input type="number" name="stock_actual" id="stock_actual" class="form-control" value="{{ producto.stock_actual }}" required>
+    </div>
+    <div class="mb-3">
+        <label for="ubicacion_almacen" class="form-label">Ubicación en Almacén</label>
+        <input type="text" name="ubicacion_almacen" id="ubicacion_almacen" class="form-control" value="{{ producto.ubicacion_almacen }}">
+    </div>
+    <div class="mb-3">
+        <label for="peso_kg" class="form-label">Peso (kg)</label>
+        <input type="number" step="0.01" name="peso_kg" id="peso_kg" class="form-control" value="{{ producto.peso_kg|stringformat:".2f" }}">
+    </div>
+    <div class="mb-3">
+        <label for="volumen_m3" class="form-label">Volumen (m³)</label>
+        <input type="number" step="0.01" name="volumen_m3" id="volumen_m3" class="form-control" value="{{ producto.volumen_m3|stringformat:".2f" }}">
+    </div>
+    <div class="mb-3">
+        <label for="categoria" class="form-label">Categoría</label>
+        <select name="categoria" id="categoria" class="form-control" required>
+            {% for categoria in categorias %}
+                <option value="{{ categoria.id }}" {% if categoria.id == producto.categoria.id %}selected{% endif %}>{{ categoria.nombre_categoria }}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <div class="mb-3">
+        <label for="proveedor" class="form-label">Proveedor</label>
+        <select name="proveedor" id="proveedor" class="form-control" required>
+            {% for proveedor in proveedores %}
+                <option value="{{ proveedor.id }}" {% if proveedor.id == producto.proveedor.id %}selected{% endif %}>{{ proveedor.nombre_proveedor }}</option>
+            {% endfor %}
+        </select>
+    </div>
+
+    <button type="submit" class="btn btn-success">Guardar Cambios</button>
+    <a href="{% url 'ver_productos' %}" class="btn btn-secondary">Cancelar</a>
+</form>
+{% endblock %}

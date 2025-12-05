@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block title %}Borrar Entrada{% endblock %}
+
+{% block content %}
+<h2>¿Estás seguro de que quieres borrar esta entrada?</h2>
+<p>Esta acción no se puede deshacer. Se descontará la cantidad del stock del producto.</p>
+
+<div class="card">
+    <div class="card-body">
+        <h5 class="card-title">{{ entrada.producto.nombre_producto }}</h5>
+        <p class="card-text">
+            <strong>Cantidad:</strong> {{ entrada.cantidad_entrada }}<br>
+            <strong>Fecha:</strong> {{ entrada.fecha_entrada|date:"d/m/Y H:i" }}<br>
+            <strong>Proveedor:</strong> {{ entrada.proveedor.nombre_proveedor }}
+        </p>
+    </div>
+</div>
+
+<form method="post" class="mt-3">
+    {% csrf_token %}
+    <button type="submit" class="btn btn-danger">Borrar</button>
+    <a href="{% url 'ver_entradas' %}" class="btn btn-secondary">Cancelar</a>
+</form>
+{% endblock %}

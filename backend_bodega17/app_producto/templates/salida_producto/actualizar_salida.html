@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block title %}Actualizar Salida{% endblock %}
+
+{% block content %}
+<h2>Actualizar Salida de Producto</h2>
+
+<form method="post">
+    {% csrf_token %}
+
+    {# Muestra errores que no pertenecen a un campo específico #}
+    {% if form.non_field_errors %}
+        <div class="alert alert-danger">
+            {% for error in form.non_field_errors %}
+                {{ error }}
+            {% endfor %}
+        </div>
+    {% endif %}
+
+    {# Itera sobre cada campo en el formulario para renderizarlo #}
+    {% for field in form %}
+        <div class="form-group mb-3">
+            {# Etiqueta del campo #}
+            {{ field.label_tag }}
+
+            {# El campo del formulario (input, select, etc.) #}
+            {{ field }}
+
+            {# Muestra los errores de validación para este campo específico #}
+            {% if field.errors %}
+                <div class="alert alert-warning mt-2">
+                    {% for error in field.errors %}
+                        {{ error }}
+                    {% endfor %}
+                </div>
+            {% endif %}
+
+            {# Muestra el texto de ayuda del campo, si lo tiene #}
+            {% if field.help_text %}
+                <small class="form-text text-muted">{{ field.help_text }}</small>
+            {% endif %}
+        </div>
+    {% endfor %}
+
+    <button type="submit" class="btn btn-primary">Actualizar</button>
+    <a href="{% url 'ver_salidas' %}" class="btn btn-secondary">Cancelar</a>
+</form>
+{% endblock %}

@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block title %}Agregar Proveedor{% endblock %}
+
+{% block content %}
+<h2>Agregar Proveedor de Almacén</h2>
+<form method="post">
+    {% csrf_token %}
+    <input type="text" name="nombre_proveedor" placeholder="Nombre del Proveedor" class="form-control mb-2" required>
+    <input type="text" name="contacto_persona" placeholder="Persona de Contacto" class="form-control mb-2">
+    <input type="text" name="telefono" placeholder="Teléfono" class="form-control mb-2">
+    <input type="email" name="email" placeholder="Email" class="form-control mb-2">
+    <input type="text" name="direccion_proveedor" placeholder="Dirección" class="form-control mb-2">
+    <input type="text" name="ruc" placeholder="RUC" class="form-control mb-2">
+    <input type="text" name="pais_origen" placeholder="País de Origen" class="form-control mb-2">
+    <button type="submit" class="btn btn-success">Guardar</button>
+    <a href="{% url 'ver_proveedores' %}" class="btn btn-secondary">Cancelar</a>
+</form>
+{% endblock %}

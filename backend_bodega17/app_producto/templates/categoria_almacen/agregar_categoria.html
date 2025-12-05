@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Agregar Categoría de Almacén</h2>
+<form method="POST">
+    {% csrf_token %}
+    <input type="text" name="nombre_categoria" placeholder="Nombre de la categoría" class="form-control mb-2">
+    <textarea name="descripcion_categoria" placeholder="Descripción" class="form-control mb-2"></textarea>
+    <input type="text" name="temperatura_ideal" placeholder="Temperatura Ideal" class="form-control mb-2">
+    <input type="text" name="tipo_almacenamiento" placeholder="Tipo de Almacenamiento" class="form-control mb-2">
+    <div class="form-check mb-2">
+        <input type="checkbox" name="es_peligroso" class="form-check-input">
+        <label class="form-check-label">Es Peligroso</label>
+    </div>
+    <button type="submit" class="btn btn-success">Guardar</button>
+</form>
+{% endblock %}

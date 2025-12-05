@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block title %}Actualizar Empleado{% endblock %}
+
+{% block content %}
+<h2>Actualizar Empleado de Almacén</h2>
+<form method="post">
+    {% csrf_token %}
+    <input type="text" name="nombre" placeholder="Nombre" class="form-control mb-2" value="{{ empleado.nombre }}" required>
+    <input type="text" name="apellido" placeholder="Apellido" class="form-control mb-2" value="{{ empleado.apellido }}" required>
+    <input type="text" name="dni" placeholder="DNI" class="form-control mb-2" value="{{ empleado.dni }}" required>
+    <input type="date" name="fecha_contratacion" placeholder="Fecha de Contratación" class="form-control mb-2" value="{{ empleado.fecha_contratacion|date:'Y-m-d' }}" required>
+    <input type="text" name="cargo" placeholder="Cargo" class="form-control mb-2" value="{{ empleado.cargo }}">
+    <input type="text" name="turno" placeholder="Turno" class="form-control mb-2" value="{{ empleado.turno }}">
+    <input type="text" name="telefono" placeholder="Teléfono" class="form-control mb-2" value="{{ empleado.telefono }}">
+    <input type="email" name="email" placeholder="Email" class="form-control mb-2" value="{{ empleado.email }}">
+    <div class="form-check mb-2">
+        <input type="checkbox" name="licencia_manejo_montacargas" class="form-check-input" {% if empleado.licencia_manejo_montacargas %}checked{% endif %}>
+        <label class="form-check-label">Tiene Licencia de Montacargas</label>
+    </div>
+    <button type="submit" class="btn btn-success">Guardar Cambios</button>
+    <a href="{% url 'ver_empleados' %}" class="btn btn-secondary">Cancelar</a>
+</form>
+{% endblock %}

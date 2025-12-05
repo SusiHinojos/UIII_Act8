@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block title %}Actualizar Registro de Inventario{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <div class="card shadow-sm">
+        <div class="card-body">
+            <h2 class="h5 mb-3"><i class="bi bi-pencil-fill"></i> Actualizar Registro de Inventario</h2>
+            <p>Estás actualizando el registro de inventario para el producto <strong>{{ inventario.producto.nombre_producto }}</strong> del día <strong>{{ inventario.fecha_inventario|date:"d/m/Y" }}</strong>.</p>
+            <form method="post">
+                {% csrf_token %}
+                
+                {{ form.as_p }}
+
+                <div class="d-flex justify-content-end mt-4">
+                    <a href="{% url 'ver_inventarios' %}" class="btn btn-secondary me-2"><i class="bi bi-x-circle"></i> Cancelar</a>
+                    <button type="submit" class="btn btn-success"><i class="bi bi-check-circle-fill"></i> Guardar Cambios</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
